@@ -1,8 +1,7 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
-RUN apt update && apt upgrade -y
-RUN apt install ghostscript -y
+RUN apt update && apt install ghostscript -y
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8443
@@ -17,6 +16,8 @@ COPY ["TownSuite.ConversionServer.Common/TownSuite.ConversionServer.Common.cspro
 COPY ["TownSuite.ConversionServer.Utilities.GhostScript/TownSuite.ConversionServer.Utilities.GhostScript.csproj", "TownSuite.ConversionServer.Utilities.GhostScript/"]
 COPY ["TownSuite.ConversionServer.Utilities.Newtonsoft/TownSuite.ConversionServer.Utilities.Newtonsoft.csproj", "TownSuite.ConversionServer.Utilities.Newtonsoft/"]
 COPY ["TownSuite.ConversionServer.Utilities.TownSuiteLogging/TownSuite.ConversionServer.Utilities.TownSuiteLogging.csproj", "TownSuite.ConversionServer.Utilities.TownSuiteLogging/"]
+COPY ["Directory.Packages.props", "Directory.Packages.props"]
+COPY ["Directory.Build.props", "Directory.Build.props"]
 RUN dotnet restore "./TownSuite.ConversionServer.APISite/TownSuite.ConversionServer.APISite.csproj"
 COPY . .
 WORKDIR "/src/TownSuite.ConversionServer.APISite"
