@@ -29,7 +29,9 @@ docker buildx inspect $builderName --bootstrap
 mkdir -p $CURRENTPATH/build/oci
 
 Write-Host "Building townsuite/conversionserver:latest" -ForegroundColor Green
+cd TownSuite.ConversionServer
 docker buildx build -f $CURRENTPATH/TownSuite.ConversionServer/TownSuite.ConversionServer.APISite/Dockerfile --progress plain --provenance=true --sbom=true --output "type=oci,name=townsuite/conversionserver,oci-mediatypes=true,compression=zstd,force-compression=true,tar=false,dest=$CURRENTPATH/build/oci/conversionserver" .
+cd $CURRENTPATH
 
 tar -cvf $CURRENTPATH/build/oci/conversionserver.oci.tar -C $CURRENTPATH/build/oci/conversionserver --transform='s|^\./||' .
 rm -rf $CURRENTPATH/build/oci/conversionserver
