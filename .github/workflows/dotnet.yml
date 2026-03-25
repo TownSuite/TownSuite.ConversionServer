@@ -20,6 +20,8 @@ jobs:
       uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7  # v5.2.0
       with:
         dotnet-version: 10.0.x
+    - name: Install GhostScript
+      run: sudo apt update && sudo apt install ghostscript -y
     - name: Restore dependencies
       run: dotnet restore TownSuite.ConversionServer/TownSuite.ConversionServer.sln
     - name: Build
