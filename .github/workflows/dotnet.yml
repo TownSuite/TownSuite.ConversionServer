@@ -23,6 +23,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TownSuite.ConversionServer/TownSuite.ConversionServer.sln
     - name: Build
-      run: dotnet build TownSuite.ConversionServer/TownSuite.ConversionServer.sln --no-restore
+      run: dotnet build TownSuite.ConversionServer/TownSuite.ConversionServer.sln
     - name: Test
-      run: dotnet test TownSuite.ConversionServer/TownSuite.ConversionServer.sln --no-build --verbosity normal
+      run: dotnet test TownSuite.ConversionServer/TownSuite.ConversionServer.sln --verbosity normal
